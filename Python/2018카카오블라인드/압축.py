@@ -3,24 +3,19 @@
 def solution(msg):
     answer = []
     dict = {}
-    for i in range(1, 27):
-        dict[chr(64 + i)] = i
-    max_num = 26
-    idx = 0
-    while idx < len(msg):
-        n = 1 #n번째 글자
-        while msg[idx:idx+n] in dict:            
-            if idx+n >= len(msg):
-                n += 1                
-                break
-            n += 1
-        if n > 1:
-            n -= 1
-        answer.append(dict[msg[idx:idx+n]])
-        if idx+n < len(msg):
-            dict[msg[idx:idx+n]+msg[idx+n]] = max_num + 1
-            max_num += 1
-        idx += n
+    for i in range(26):
+        dict[chr(65 + i)] = i + 1
+    cur, next = 0, 0 #현재 글자 idx, next글자 idx
+    while True:
+        next += 1
+        if next == len(msg):
+            answer.append(dict[msg[cur:next]])
+            break
+        if msg[cur:next+1] not in dict:
+            dict[msg[cur:next+1]] = len(dict)+1
+            answer.append(dict[msg[cur:next]])
+            cur = next
+        
     return answer
 
-# print(solution("ABABABABABABABAB"))
+print(solution("ABABABABABABABAB"))
