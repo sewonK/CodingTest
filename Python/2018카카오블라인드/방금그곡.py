@@ -29,9 +29,8 @@ def solution(m, musicinfos):
         start, end, title, music = musicinfo.split(",")
         music = add_zero(music)        
         play_time = get_play_time(start, end)
-        entire_music = get_entire_music(music, play_time)
-        idx = entire_music.find(m)
-        if (idx != -1) and (max_play_time < play_time):
+        entire_music = get_entire_music(music, play_time)        
+        if (m in entire_music) and (max_play_time < play_time):
             max_play_time = play_time
             answer = title
     return answer
