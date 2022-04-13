@@ -7,12 +7,12 @@ package JAVA;
 public class makePrimeNum {
     public static void main(String[] args) {
         int[] nums = {1,2,7,6,4};
-        Solution test = new Solution();
+        Solution1 test = new Solution1();
         System.out.println(test.solution(nums));
     }
 }
 
-class Solution {
+class Solution1 {
     public boolean isPrime(int num){
         for(int i=2; i*i<num; i++){
             if(num % i == 0) return false;
